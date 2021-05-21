@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66E2096A-11B3-4FA8-871A-A314F2CCAE89}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CoinPredictor</RootNamespace>
+    <AssemblyName>CoinPredictor</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.12.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.12.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\DAL\AutoTradeDal.cs" />
+    <Compile Include="Classes\DAL\BackLogDal.cs" />
+    <Compile Include="Classes\DAL\CommonDal.cs" />
+    <Compile Include="Classes\DAL\HoldingsDal.cs" />
+    <Compile Include="Classes\DAL\PurcahseDal.cs" />
+    <Compile Include="Classes\DAL\ReportDal.cs" />
+    <Compile Include="Classes\Model\AutoTradeDetailsModel.cs" />
+    <Compile Include="Classes\Model\AutoTradeModel.cs" />
+    <Compile Include="Classes\Model\BackLogModel.cs" />
+    <Compile Include="Classes\Model\DBConnection.cs" />
+    <Compile Include="Classes\DAL\ErrorLogDal.cs" />
+    <Compile Include="Classes\Model\ErrorLogModel.cs" />
+    <Compile Include="Classes\Model\PurchaseModel.cs" />
+    <Compile Include="Classes\Model\SalesModel.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="frmAutoTrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAutoTrade.Designer.cs">
+      <DependentUpon>frmAutoTrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAutoTradeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAutoTradeReport.Designer.cs">
+      <DependentUpon>frmAutoTradeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPurchase.Designer.cs">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSales.Designer.cs">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMDI.Designer.cs">
+      <DependentUpon>frmMDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProcessData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcessData.Designer.cs">
+      <DependentUpon>frmProcessData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DAL\LogData.cs" />
+    <Compile Include="frmProfitReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProfitReport.Designer.cs">
+      <DependentUpon>frmProfitReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fromPerfoMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fromPerfoMatrix.Designer.cs">
+      <DependentUpon>fromPerfoMatrix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicVariables.cs" />
+    <Compile Include="ReadFromExcel.cs" />
+    <Compile Include="ReadOpenXml.cs" />
+    <EmbeddedResource Include="frmAutoTrade.resx">
+      <DependentUpon>frmAutoTrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAutoTradeReport.resx">
+      <DependentUpon>frmAutoTradeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPurchase.resx">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSales.resx">
+      <DependentUpon>frmSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMDI.resx">
+      <DependentUpon>frmMDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcessData.resx">
+      <DependentUpon>frmProcessData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProfitReport.resx">
+      <DependentUpon>frmProfitReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fromPerfoMatrix.resx">
+      <DependentUpon>fromPerfoMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Docs\Jaseel Sprint Plan.docx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

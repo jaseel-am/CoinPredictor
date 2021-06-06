@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace CoinPredictor
 {
-    public partial class frmAutoTrade : Form
+    public partial class frmBackTrack : Form
     {
-        public frmAutoTrade()
+        public frmBackTrack()
         {
             InitializeComponent();
         }
         private void Clear()
         {
+            SymbolCheckBoxListFill();
             GetCurrentBalance();
-            btnSave.Visible = false;
             string strTempFromDate = "2021-05-02";
             string strTempToDate = "2021-05-05";
             txtStartDate.Text = strTempFromDate.AsDateTime().ToString("dd-MMM-yyyy");
@@ -31,10 +31,29 @@ namespace CoinPredictor
         }
         private void SymbolDropdownFill()
         {
-            BackLogDal objDal = new BackLogDal();
-            cmbInstrument.DataSource = objDal.SymbolGetAllForDropdown();
-            cmbInstrument.ValueMember = "SymbolId";
-            cmbInstrument.DisplayMember = "Symbol";
+            //BackLogDal objDal = new BackLogDal();
+            //cmbInstrument.DataSource = objDal.SymbolGetAllForDropdown();
+            //cmbInstrument.ValueMember = "SymbolId";
+            //cmbInstrument.DisplayMember = "Symbol";
+        }
+        private void SymbolCheckBoxListFill()
+        {
+            try
+            {
+                BackLogDal objDal = new BackLogDal();
+                DataTable Dtbl = objDal.SymbolGetAllForDropdown();
+                chbxLstInstrument.DataSource = Dtbl;
+                chbxLstInstrument.DisplayMember = "Symbol";
+                chbxLstInstrument.ValueMember = "SymbolId";
+                for (int i = 0; i < chbxLstInstrument.Items.Count; i++)
+                {
+                    chbxLstInstrument.SetItemChecked(i, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("GetCurrentBalance: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void GetCurrentBalance()
         {
@@ -49,88 +68,80 @@ namespace CoinPredictor
                 MessageBox.Show("GetCurrentBalance: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private DataTable GetDataForAutomation()
+        private DataTable GetDataForAutomation(string strSymbolId)
         {
             DataTable dtOutput = new DataTable();
             try
             {
-                bool isFirst = false;
                 DateTime dtEntryDate = DateTime.Now;
-                DateTime dtExitDate = DateTime.Now;
+
+                DateTime dtCurrEntryDate = DateTime.Now;
+                DateTime dtPrevExitDate = DateTime.Now;
                 double decExitPrice = 0;
                 double inShare = 0;
                 double decEntryPrice = 0;
-
-                double decEntryTotal = 0;
                 double decExitTotal = 0;
                 double decProfit = 0;
-                double decTotalBal = txtOpeningBalance.Text.AsDouble();
 
                 int inDuration = txtDuration.Text.AsInt();
                 PurcahseDal objDal = new PurcahseDal();
-                DataTable dtFromDB = objDal.GetValuesForAutoTrade(cmbInstrument.SelectedValue.ToString().AsInt(), txtStartDate.Text.AsDateTime(), txtEndDate.Text.AsDateTime());
+                DataTable dtFromDB = objDal.GetValuesForAutoTradeMultiSymbol(strSymbolId, txtStartDate.Text.AsDateTime(), txtEndDate.Text.AsDateTime());
 
-                DataView view = dtFromDB.DefaultView;
-                view.Sort = "LogDate ASC";
-                DataTable dtbl = view.ToTable();
-
+                //DataView view = dtFromDB.DefaultView;
+                //view.Sort = "LogDate ASC";
+                //DataTable dtbl = view.ToTable();
 
                 dtOutput = CreateTable();
-                for (int i = 0; i < dtbl.Rows.Count; i++)
+                List<DataTable> DtResult = dtFromDB.AsEnumerable().GroupBy(row => row.Field<string>("Symbol")).Select(g => g.CopyToDataTable()).ToList();
+                foreach (DataTable table in DtResult)
                 {
-                    double decResult = dtbl.Rows[i]["RESULT"].ToString().AsDouble();
-                    if (decResult < 0.9)
+                    double decTotalOpening = txtOpeningBalance.Text.AsDouble();
+                    int inSymbolCount = GetSelectedSymbolsCount();
+                    double decTotalBal = Math.Round(decTotalOpening / inSymbolCount, 2);
+                    DataView view = table.DefaultView;
+                    view.Sort = "LogDate ASC";
+                    DataTable dtbl = view.ToTable();
+                    DateTime dtExitDate = DateTime.Now;
+                    for (int i = 0; i < dtbl.Rows.Count; i++)
                     {
-                        dtEntryDate = dtbl.Rows[i]["LogDate"].ToString().AsDateTime();
-                        dtExitDate = dtbl.Rows[i]["LogDate"].ToString().AsDateTime().AddDays(inDuration);
-                        decExitPrice = GetExitPrice(dtbl, dtExitDate);
-                        inShare = Math.Round(decTotalBal / dtbl.Rows[i]["CloseVal"].ToString().AsDouble(), 2);
-                        decEntryPrice = dtbl.Rows[i]["CloseVal"].ToString().AsDouble();
-                        decExitTotal = Math.Round(((decExitPrice - decEntryPrice) / decEntryPrice) * decTotalBal + decTotalBal, 0);
-                        decProfit = Math.Round(((decEntryPrice - decExitPrice) / decEntryPrice) * decTotalBal, 0);
-                        decProfit = decProfit < 0 ? Math.Abs(decProfit) : decProfit * -1;
-                        DataRow dr = dtOutput.NewRow();
-                        dr["Symbol"] = dtbl.Rows[i]["Symbol"].ToString();
-                        dr["EntryDate"] = dtEntryDate.ToString("dd-MMM-yyyy");
-                        dr["EntryPrice"] = decEntryPrice;
-                        dr["ExitDate"] = dtExitDate.ToString("dd-MMM-yyyy");
-                        dr["ExitPrice"] = decExitPrice;
-                        dr["Share"] = inShare;
-                        dr["Profit"] = decProfit;
-                        dr["ExitOn"] = "Duration Limit";
-                        dr["AccountBalance"] = decExitTotal;
-                        dtOutput.Rows.Add(dr);
-                        isFirst = true;
-                        decTotalBal = decExitTotal;
+                        double decResult = dtbl.Rows[i]["RESULT"].ToString().AsDouble();
+                        dtCurrEntryDate = dtbl.Rows[i]["LogDate"].ToString().AsDateTime();
+                        if (decResult < 0.9)
+                        {
+                            dtEntryDate = dtbl.Rows[i]["LogDate"].ToString().AsDateTime();
+                            if (dtExitDate.ToString("dd-MMM-yyyy") == DateTime.Now.ToString("dd-MMM-yyyy"))
+                            {
+                                dtExitDate = dtEntryDate.AddDays(-1);
+                            }
+                            if (dtEntryDate > dtExitDate)
+                            {
+                                dtExitDate = dtbl.Rows[i]["LogDate"].ToString().AsDateTime().AddDays(inDuration);
+                                decExitPrice = GetExitPrice(dtbl, dtExitDate);
+                                inShare = Math.Round(decTotalBal / dtbl.Rows[i]["CloseVal"].ToString().AsDouble(), 2);
+                                decEntryPrice = dtbl.Rows[i]["CloseVal"].ToString().AsDouble();
+                                decExitTotal = Math.Round(((decExitPrice - decEntryPrice) / decEntryPrice) * decTotalBal + decTotalBal, 0);
+                                decProfit = Math.Round(((decEntryPrice - decExitPrice) / decEntryPrice) * decTotalBal, 0);
+                                decProfit = decProfit < 0 ? Math.Abs(decProfit) : decProfit * -1;
+                                DataRow dr = dtOutput.NewRow();
+                                dr["SymbolId"] = dtbl.Rows[i]["SymbolId"].ToString();
+                                dr["Symbol"] = dtbl.Rows[i]["Symbol"].ToString();
+                                dr["EntryDate"] = dtEntryDate.ToString("dd-MMM-yyyy");
+                                dr["EntryPrice"] = decEntryPrice;
+                                dr["ExitDate"] = dtExitDate.ToString("dd-MMM-yyyy");
+                                dr["ExitPrice"] = decExitPrice;
+                                dr["Share"] = inShare;
+                                dr["Profit"] = decProfit;
+                                dr["ExitOn"] = "Duration Limit";
+                                dr["AccountBalance"] = decExitTotal;
+                                dtOutput.Rows.Add(dr);
+                                decTotalBal = decExitTotal;
+                            }
+                        }
                     }
-                    //else if (isFirst)
-                    //{
-                    //dtEntryDate = dtExitDate;
-                    //decEntryPrice = decExitPrice;
-                    //dtExitDate = dtEntryDate.AddDays(txtDuration.Text.AsInt());
-                    //decExitPrice = GetExitPrice(dtbl, dtExitDate);
-                    //if (decExitPrice > 0)
-                    //{
-                    //    inShare = Math.Round(decTotalBal / decEntryPrice, 0);
-                    //    decEntryTotal = inShare * decEntryPrice;
-                    //    decExitTotal = Math.Round(inShare * decExitPrice, 0);
-                    //    //decProfit = Math.Round((decExitTotal) - (decEntryTotal), 0);
-                    //    decProfit = Math.Round(((decEntryPrice - decExitPrice) / decEntryPrice) * decTotalBal, 0);
-                    //    decProfit = decProfit < 0 ? Math.Abs(decProfit) : decProfit * -1;
-                    //    DataRow dr = dtOutput.NewRow();
-                    //    dr["Symbol"] = dtbl.Rows[i]["Symbol"].ToString();
-                    //    dr["EntryDate"] = dtEntryDate.ToString("dd-MMM-yyyy");
-                    //    dr["EntryPrice"] = decEntryPrice;
-                    //    dr["ExitDate"] = dtExitDate.ToString("dd-MMM-yyyy");
-                    //    dr["ExitPrice"] = decExitPrice;
-                    //    dr["Share"] = inShare;
-                    //    dr["Profit"] = decProfit;
-                    //    dr["ExitOn"] = "Duration Limit";
-                    //    dr["AccountBalance"] = decExitTotal;
-                    //    dtOutput.Rows.Add(dr);
-                    //    decTotalBal = decExitTotal;
-                    //}
-                    // }
+                    if (dtOutput.Rows.Count > 0)
+                    {
+                        dtOutput.Rows[dtOutput.Rows.Count - 1]["ExitOn"] = "Period End";
+                    }
                 }
             }
             catch (Exception ex)
@@ -138,6 +149,27 @@ namespace CoinPredictor
                 MessageBox.Show("GetDataForAutomation: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             return dtOutput;
+        }
+
+        private string GetSymbols()
+        {
+            string strIds = "";
+            foreach (object itemChecked in chbxLstInstrument.CheckedItems)
+            {
+                DataRowView castedItem = itemChecked as DataRowView;
+                int? id = castedItem["SymbolId"].ToString().AsInt();
+                strIds = strIds + id + ",";
+            }
+            return strIds.TrimEnd(',');
+        }
+        private int GetSelectedSymbolsCount()
+        {
+            int inCount = 0;
+            foreach (object itemChecked in chbxLstInstrument.CheckedItems)
+            {
+                inCount++;
+            }
+            return inCount;
         }
         private double GetExitPrice(DataTable dtbl, DateTime dtExitDate)
         {
@@ -161,6 +193,7 @@ namespace CoinPredictor
         private DataTable CreateTable()
         {
             DataTable Dtbl = new DataTable();
+            Dtbl.Columns.Add("SymbolId");
             Dtbl.Columns.Add("Symbol");
             Dtbl.Columns.Add("EntryDate");
             Dtbl.Columns.Add("EntryPrice");
@@ -172,16 +205,16 @@ namespace CoinPredictor
             Dtbl.Columns.Add("ExitOn");
             return Dtbl;
         }
-        private void frmCoinAutomate_Load(object sender, EventArgs e)
-        {
-            Clear();
-        }
+
         private void dtpStartDate_ValueChanged(object sender, EventArgs e)
         {
             try
             {
                 DateTime date = this.dtpStartDate.Value;
                 this.txtStartDate.Text = date.ToString("dd-MMM-yyyy");
+                this.txtEndDate.Text = date.AddDays(5).ToString("dd-MMM-yyyy");
+                this.dtpStartDate.Value = txtStartDate.Text.AsDateTime();
+                this.dtpEndDate.Value = txtEndDate.Text.AsDateTime();
             }
             catch (Exception ex)
             {
@@ -208,13 +241,28 @@ namespace CoinPredictor
             {
                 if (txtStartDate.Text != string.Empty && txtEndDate.Text != string.Empty)
                 {
-                    DataTable dtbl = GetDataForAutomation();
-                    int inCount = dtbl.Rows.Count;
-                    if (inCount > 0)
+                    string strSymbolIds = GetSymbols();
+                    if (strSymbolIds != string.Empty)
                     {
-                        dtbl.Rows[inCount - 1]["ExitOn"] = "Period End";
-                        DgvData.DataSource = dtbl;
-                        btnSave.Visible = true;
+                        DataTable dtbl = GetDataForAutomation(strSymbolIds);
+                        int inCount = dtbl.Rows.Count;
+                        if (inCount > 0)
+                        {
+                            dtbl.Rows[inCount - 1]["ExitOn"] = "Period End";
+                            DgvData.DataSource = dtbl;
+                            int inMasterId = SaveAutoTradeMaster();
+                            if (inMasterId > 0)
+                            {
+                                SaveAutoTradeDetails(inMasterId);
+                                MessageBox.Show("Auto Trade Saved Successfully", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                GetCurrentBalance();
+                                FillTradePerfoMatrix();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Something went wrong details not Saved", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
             }
@@ -228,14 +276,14 @@ namespace CoinPredictor
         {
             for (int i = 0; i < DgvData.Rows.Count; i++)
             {
-                double decVal = DgvData.Rows[i].Cells[6].Value.ToString().AsDouble();
+                double decVal = DgvData.Rows[i].Cells[7].Value.ToString().AsDouble();
                 if (decVal > 0)
                 {
-                    DgvData.Rows[i].Cells[6].Style.ForeColor = Color.Green;
+                    DgvData.Rows[i].Cells[7].Style.ForeColor = Color.Green;
                 }
                 else
                 {
-                    DgvData.Rows[i].Cells[6].Style.ForeColor = Color.Red;
+                    DgvData.Rows[i].Cells[7].Style.ForeColor = Color.Red;
                 }
             }
         }
@@ -250,7 +298,6 @@ namespace CoinPredictor
                 ojbModel.Duration = txtDuration.Text.AsInt();
                 ojbModel.StartDate = txtStartDate.Text.AsDateTime();
                 ojbModel.EndDate = txtEndDate.Text.AsDateTime();
-              // ojbModel.SymbolId = cmbInstrument.SelectedValue.ToString().AsInt();
                 inRetId = objDal.AutoTradeMasterInsert(ojbModel);
             }
             catch (Exception ex)
@@ -270,6 +317,7 @@ namespace CoinPredictor
                     if (dgrow.Cells["Symbol"].Value != null)
                     {
                         ojbModel.AutoTradeId = inMasterId;
+                        ojbModel.SymbolId = dgrow.Cells["SymbolId"].Value.ToString().AsInt();
                         ojbModel.EntryDate = dgrow.Cells["EntryDate"].Value.ToString().AsDateTime();
                         ojbModel.EntryPrice = dgrow.Cells["EntryPrice"].Value.ToString().AsDouble();
                         ojbModel.ExitDate = dgrow.Cells["ExitDate"].Value.ToString().AsDateTime();
@@ -355,6 +403,18 @@ namespace CoinPredictor
             catch (Exception ex)
             {
                 MessageBox.Show("btnRefresh_Click : " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void frmBackTrack_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("frmBackTrack_Load : " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

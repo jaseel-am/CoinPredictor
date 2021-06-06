@@ -177,8 +177,8 @@ namespace CoinPredictor
         {
             try
             {
-                frmAutoTrade frm = new frmAutoTrade();
-                frmAutoTrade open = Application.OpenForms["frmCoinAutomate"] as frmAutoTrade;
+                frmBackTrack frm = new frmBackTrack();
+                frmBackTrack open = Application.OpenForms["frmBackTrack"] as frmBackTrack;
                 if (open == null)
                 {
                     frm.MdiParent = this;
@@ -250,6 +250,58 @@ namespace CoinPredictor
             //{
             //    MessageBox.Show("MDI 2: " + ex.Message, "Coin Predictor Data Loader", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //}
+        }
+
+        private void queryRunToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmQueryBuilder frm = new frmQueryBuilder();
+                frmQueryBuilder open = Application.OpenForms["frmQueryBuilder"] as frmQueryBuilder;
+                if (open == null)
+                {
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+                else
+                {
+                    open.Activate();
+                    if (open.WindowState == FormWindowState.Minimized)
+                    {
+                        open.WindowState = FormWindowState.Normal;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("MDI 2: " + ex.Message, "Coin Predictor Data Loader", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAutoTrade frm = new frmAutoTrade();
+                frmAutoTrade open = Application.OpenForms["frmAutoTrade"] as frmAutoTrade;
+                if (open == null)
+                {
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+                else
+                {
+                    open.Activate();
+                    if (open.WindowState == FormWindowState.Minimized)
+                    {
+                        open.WindowState = FormWindowState.Normal;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("MDI 2: " + ex.Message, "Coin Predictor Data Loader", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMDI));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mastersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCoinPredict = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +42,8 @@
             this.perfomanceMatricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queryRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +54,8 @@
             this.mastersToolStripMenuItem,
             this.transactionToolStripMenuItem,
             this.reportsToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -66,13 +70,13 @@
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.mastersToolStripMenuItem.Text = "Masters";
+            this.mastersToolStripMenuItem.Visible = false;
             // 
             // mnuCoinPredict
             // 
             this.mnuCoinPredict.Name = "mnuCoinPredict";
-            this.mnuCoinPredict.Size = new System.Drawing.Size(160, 26);
+            this.mnuCoinPredict.Size = new System.Drawing.Size(216, 26);
             this.mnuCoinPredict.Text = "CoinPredict";
-            this.mnuCoinPredict.Visible = false;
             this.mnuCoinPredict.Click += new System.EventHandler(this.mnuCoinPredict_Click);
             // 
             // transactionToolStripMenuItem
@@ -121,14 +125,14 @@
             // autoTradeReportToolStripMenuItem
             // 
             this.autoTradeReportToolStripMenuItem.Name = "autoTradeReportToolStripMenuItem";
-            this.autoTradeReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.autoTradeReportToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.autoTradeReportToolStripMenuItem.Text = "AutoTrade Report";
             this.autoTradeReportToolStripMenuItem.Click += new System.EventHandler(this.autoTradeReportToolStripMenuItem_Click);
             // 
             // profitorLossReportToolStripMenuItem
             // 
             this.profitorLossReportToolStripMenuItem.Name = "profitorLossReportToolStripMenuItem";
-            this.profitorLossReportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.profitorLossReportToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.profitorLossReportToolStripMenuItem.Text = "ProfitorLossReport";
             this.profitorLossReportToolStripMenuItem.Visible = false;
             this.profitorLossReportToolStripMenuItem.Click += new System.EventHandler(this.profitorLossReportToolStripMenuItem_Click);
@@ -136,7 +140,7 @@
             // perfomanceMatricsToolStripMenuItem
             // 
             this.perfomanceMatricsToolStripMenuItem.Name = "perfomanceMatricsToolStripMenuItem";
-            this.perfomanceMatricsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.perfomanceMatricsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.perfomanceMatricsToolStripMenuItem.Text = "Perfomance Metrics";
             this.perfomanceMatricsToolStripMenuItem.Visible = false;
             this.perfomanceMatricsToolStripMenuItem.Click += new System.EventHandler(this.perfomanceMatricsToolStripMenuItem_Click);
@@ -144,7 +148,8 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.appSettingsToolStripMenuItem});
+            this.appSettingsToolStripMenuItem,
+            this.queryRunToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -156,12 +161,29 @@
             this.appSettingsToolStripMenuItem.Text = "App Settings";
             this.appSettingsToolStripMenuItem.Click += new System.EventHandler(this.appSettingsToolStripMenuItem_Click);
             // 
+            // queryRunToolStripMenuItem
+            // 
+            this.queryRunToolStripMenuItem.Name = "queryRunToolStripMenuItem";
+            this.queryRunToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
+            this.queryRunToolStripMenuItem.Text = "QueryRun";
+            this.queryRunToolStripMenuItem.Visible = false;
+            this.queryRunToolStripMenuItem.Click += new System.EventHandler(this.queryRunToolStripMenuItem_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Visible = false;
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
             // frmMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1456, 617);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMDI";
@@ -189,6 +211,8 @@
         private System.Windows.Forms.ToolStripMenuItem perfomanceMatricsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTradeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTradeReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem queryRunToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

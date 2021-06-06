@@ -40,7 +40,6 @@ namespace CoinPredictor
                     objConn.Open();
                     SqlCommand objCmd = new SqlCommand("AutoTradeInsert", objConn);
                     objCmd.CommandType = CommandType.StoredProcedure;
-                    objCmd.Parameters.AddWithValue("@SymbolId", (object)objModel.SymbolId ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@StartDate", (object)objModel.StartDate ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@EndDate", (object)objModel.EndDate ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@Duration", (object)objModel.Duration ?? (object)DBNull.Value);
@@ -68,6 +67,7 @@ namespace CoinPredictor
                     SqlCommand objCmd = new SqlCommand("AutoTradeDetailsInsert", objConn);
                     objCmd.CommandType = CommandType.StoredProcedure;
                     objCmd.Parameters.AddWithValue("@AutoTradeId", (object)objModel.AutoTradeId ?? (object)DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@SymbolId", (object)objModel.SymbolId ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@EntryDate", (object)objModel.EntryDate ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@EntryPrice", (object)objModel.EntryPrice ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@ExitDate", (object)objModel.ExitDate ?? (object)DBNull.Value);

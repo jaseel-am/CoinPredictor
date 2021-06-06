@@ -107,6 +107,31 @@ namespace CoinPredictor
             }
             return dtbl;
         }
+        public DataTable GetValuesForAutoTradeMultiSymbol(string inSymbolIds, DateTime dtfrom, DateTime dtTo)
+        {
+            DataTable dtbl = new DataTable();
+            try
+            {
+                using (SqlConnection objConn = new SqlConnection(ConnectionString))
+                {
+                    if (objConn.State == ConnectionState.Closed)
+                    {
+                        objConn.Open();
+                    }
+                    SqlDataAdapter sdaadapter = new SqlDataAdapter("GetValuesForAutoTradeMultiSymbol", objConn);
+                    sdaadapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    sdaadapter.SelectCommand.Parameters.AddWithValue("@SymbolId", inSymbolIds);
+                    sdaadapter.SelectCommand.Parameters.AddWithValue("@FromDate", dtfrom);
+                    sdaadapter.SelectCommand.Parameters.AddWithValue("@ToDate", dtTo);
+                    sdaadapter.Fill(dtbl);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogData.LoggError(ex.Message, "OpeningBalanceGet", ex.ToString());
+            }
+            return dtbl;
+        }
 
     }
 }

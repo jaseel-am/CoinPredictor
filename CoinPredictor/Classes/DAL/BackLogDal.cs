@@ -26,7 +26,6 @@ namespace CoinPredictor
                     objCmd.Parameters.AddWithValue("@LowVal", (object)objModel.LowVal ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@CloseVal", (object)objModel.CloseVal ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@TotalVolume", (object)objModel.TotalVolume ?? (object)DBNull.Value);
-
                     objCmd.Parameters.AddWithValue("@True_Range", (object)objModel.True_Range ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@ATR_2", (object)objModel.ATR_2 ?? (object)DBNull.Value);
                     objCmd.Parameters.AddWithValue("@ATR_5", (object)objModel.ATR_5 ?? (object)DBNull.Value);

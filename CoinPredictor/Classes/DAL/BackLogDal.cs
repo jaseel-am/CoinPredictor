@@ -116,7 +116,28 @@ namespace CoinPredictor
             }
             return dtbl;
         }
-
+        public DataTable SymbolsTopTenGetAllForDropDown()
+        {
+            DataTable dtbl = new DataTable();
+            try
+            {
+                using (SqlConnection objConn = new SqlConnection(ConnectionString))
+                {
+                    if (objConn.State == ConnectionState.Closed)
+                    {
+                        objConn.Open();
+                    }
+                    SqlDataAdapter sdaadapter = new SqlDataAdapter("SymbolsTopTenGetAll", objConn);
+                    sdaadapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    sdaadapter.Fill(dtbl);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogData.LoggError(ex.Message, "RawreportSearch", ex.ToString());
+            }
+            return dtbl;
+        }
 
     }
 }

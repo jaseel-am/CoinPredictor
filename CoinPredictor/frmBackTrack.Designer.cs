@@ -36,7 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackTrack));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chbxLstInstrument = new System.Windows.Forms.CheckedListBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtGainPercent = new System.Windows.Forms.TextBox();
@@ -53,6 +54,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.BtnAutomate = new System.Windows.Forms.Button();
+            this.txtProfitTarget = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtDuration = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
@@ -75,10 +78,11 @@
             this.AccountBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExitOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SymbolId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtProfitTarget = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.DgvInstruments = new System.Windows.Forms.DataGridView();
+            this.insSymbolId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSymbolSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.insSymbol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RESULT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,6 +90,7 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -97,9 +102,9 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(233)))));
+            this.splitContainer1.Panel1.Controls.Add(this.DgvInstruments);
             this.splitContainer1.Panel1.Controls.Add(this.textBox2);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.chbxLstInstrument);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.btnClear);
@@ -121,18 +126,33 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.DgvData);
-            this.splitContainer1.Size = new System.Drawing.Size(1749, 752);
-            this.splitContainer1.SplitterDistance = 499;
+            this.splitContainer1.Size = new System.Drawing.Size(1605, 777);
+            this.splitContainer1.SplitterDistance = 491;
             this.splitContainer1.TabIndex = 0;
             // 
-            // chbxLstInstrument
+            // textBox2
             // 
-            this.chbxLstInstrument.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxLstInstrument.FormattingEnabled = true;
-            this.chbxLstInstrument.Location = new System.Drawing.Point(141, 178);
-            this.chbxLstInstrument.Name = "chbxLstInstrument";
-            this.chbxLstInstrument.Size = new System.Drawing.Size(252, 256);
-            this.chbxLstInstrument.TabIndex = 814;
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(198, 77);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(47, 25);
+            this.textBox2.TabIndex = 816;
+            this.textBox2.Text = "Days";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(431, 77);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(32, 25);
+            this.textBox1.TabIndex = 815;
+            this.textBox1.Text = "%";
             // 
             // panel2
             // 
@@ -148,9 +168,9 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtTotalTrade);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Location = new System.Drawing.Point(3, 528);
+            this.panel2.Location = new System.Drawing.Point(3, 566);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(407, 217);
+            this.panel2.Size = new System.Drawing.Size(407, 190);
             this.panel2.TabIndex = 813;
             // 
             // btnRefresh
@@ -159,7 +179,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(178, 169);
+            this.btnRefresh.Location = new System.Drawing.Point(178, 156);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(116, 28);
             this.btnRefresh.TabIndex = 812;
@@ -171,7 +191,7 @@
             // 
             this.txtGainPercent.BackColor = System.Drawing.Color.DarkGray;
             this.txtGainPercent.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGainPercent.Location = new System.Drawing.Point(178, 135);
+            this.txtGainPercent.Location = new System.Drawing.Point(178, 128);
             this.txtGainPercent.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtGainPercent.Name = "txtGainPercent";
             this.txtGainPercent.ReadOnly = true;
@@ -184,7 +204,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
-            this.label8.Location = new System.Drawing.Point(4, 107);
+            this.label8.Location = new System.Drawing.Point(4, 102);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 16);
             this.label8.TabIndex = 802;
@@ -205,7 +225,7 @@
             // 
             this.txtFinalAccountBalance.BackColor = System.Drawing.Color.DarkGray;
             this.txtFinalAccountBalance.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFinalAccountBalance.Location = new System.Drawing.Point(178, 42);
+            this.txtFinalAccountBalance.Location = new System.Drawing.Point(178, 40);
             this.txtFinalAccountBalance.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtFinalAccountBalance.Name = "txtFinalAccountBalance";
             this.txtFinalAccountBalance.ReadOnly = true;
@@ -218,7 +238,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
-            this.label7.Location = new System.Drawing.Point(4, 45);
+            this.label7.Location = new System.Drawing.Point(4, 43);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 16);
             this.label7.TabIndex = 801;
@@ -228,7 +248,7 @@
             // 
             this.txtProfitFactor.BackColor = System.Drawing.Color.DarkGray;
             this.txtProfitFactor.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProfitFactor.Location = new System.Drawing.Point(178, 73);
+            this.txtProfitFactor.Location = new System.Drawing.Point(178, 69);
             this.txtProfitFactor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtProfitFactor.Name = "txtProfitFactor";
             this.txtProfitFactor.ReadOnly = true;
@@ -253,7 +273,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
-            this.label5.Location = new System.Drawing.Point(4, 138);
+            this.label5.Location = new System.Drawing.Point(4, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 16);
             this.label5.TabIndex = 800;
@@ -263,7 +283,7 @@
             // 
             this.txtTotalTrade.BackColor = System.Drawing.Color.DarkGray;
             this.txtTotalTrade.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalTrade.Location = new System.Drawing.Point(178, 104);
+            this.txtTotalTrade.Location = new System.Drawing.Point(178, 99);
             this.txtTotalTrade.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtTotalTrade.Name = "txtTotalTrade";
             this.txtTotalTrade.ReadOnly = true;
@@ -276,7 +296,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
-            this.label10.Location = new System.Drawing.Point(4, 76);
+            this.label10.Location = new System.Drawing.Point(4, 72);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 16);
             this.label10.TabIndex = 804;
@@ -286,7 +306,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(2, 482);
+            this.panel1.Location = new System.Drawing.Point(2, 520);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 47);
             this.panel1.TabIndex = 812;
@@ -308,7 +328,7 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(234, 440);
+            this.btnClear.Location = new System.Drawing.Point(234, 478);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(63, 28);
             this.btnClear.TabIndex = 795;
@@ -322,7 +342,7 @@
             this.BtnAutomate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAutomate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAutomate.ForeColor = System.Drawing.Color.White;
-            this.BtnAutomate.Location = new System.Drawing.Point(141, 440);
+            this.BtnAutomate.Location = new System.Drawing.Point(141, 478);
             this.BtnAutomate.Name = "BtnAutomate";
             this.BtnAutomate.Size = new System.Drawing.Size(87, 28);
             this.BtnAutomate.TabIndex = 793;
@@ -330,14 +350,36 @@
             this.BtnAutomate.UseVisualStyleBackColor = false;
             this.BtnAutomate.Click += new System.EventHandler(this.BtnAutomate_Click);
             // 
+            // txtProfitTarget
+            // 
+            this.txtProfitTarget.BackColor = System.Drawing.Color.White;
+            this.txtProfitTarget.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProfitTarget.Location = new System.Drawing.Point(359, 77);
+            this.txtProfitTarget.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
+            this.txtProfitTarget.Name = "txtProfitTarget";
+            this.txtProfitTarget.Size = new System.Drawing.Size(73, 25);
+            this.txtProfitTarget.TabIndex = 792;
+            this.txtProfitTarget.Text = "10";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
+            this.label12.Location = new System.Drawing.Point(257, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 17);
+            this.label12.TabIndex = 791;
+            this.label12.Text = "Profit Target:";
+            // 
             // txtDuration
             // 
             this.txtDuration.BackColor = System.Drawing.Color.White;
             this.txtDuration.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDuration.Location = new System.Drawing.Point(141, 111);
+            this.txtDuration.Location = new System.Drawing.Point(141, 77);
             this.txtDuration.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(196, 25);
+            this.txtDuration.Size = new System.Drawing.Size(57, 25);
             this.txtDuration.TabIndex = 792;
             this.txtDuration.Text = "3";
             // 
@@ -346,7 +388,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label4.Location = new System.Drawing.Point(12, 114);
+            this.label4.Location = new System.Drawing.Point(12, 77);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 791;
@@ -355,7 +397,7 @@
             // dtpEndDate
             // 
             this.dtpEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEndDate.Location = new System.Drawing.Point(368, 76);
+            this.dtpEndDate.Location = new System.Drawing.Point(437, 45);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(25, 25);
@@ -365,16 +407,16 @@
             // txtEndDate
             // 
             this.txtEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndDate.Location = new System.Drawing.Point(141, 76);
+            this.txtEndDate.Location = new System.Drawing.Point(336, 45);
             this.txtEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(229, 25);
+            this.txtEndDate.Size = new System.Drawing.Size(104, 25);
             this.txtEndDate.TabIndex = 789;
             // 
             // dtpStartDate
             // 
             this.dtpStartDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStartDate.Location = new System.Drawing.Point(368, 42);
+            this.dtpStartDate.Location = new System.Drawing.Point(242, 42);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(25, 25);
@@ -397,7 +439,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label6.Location = new System.Drawing.Point(12, 79);
+            this.label6.Location = new System.Drawing.Point(268, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 17);
             this.label6.TabIndex = 786;
@@ -409,7 +451,7 @@
             this.txtStartDate.Location = new System.Drawing.Point(141, 42);
             this.txtStartDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(229, 25);
+            this.txtStartDate.Size = new System.Drawing.Size(104, 25);
             this.txtStartDate.TabIndex = 787;
             // 
             // label3
@@ -432,7 +474,7 @@
             this.txtOpeningBalance.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtOpeningBalance.Name = "txtOpeningBalance";
             this.txtOpeningBalance.ReadOnly = true;
-            this.txtOpeningBalance.Size = new System.Drawing.Size(252, 25);
+            this.txtOpeningBalance.Size = new System.Drawing.Size(321, 25);
             this.txtOpeningBalance.TabIndex = 784;
             this.txtOpeningBalance.Text = "1000";
             // 
@@ -441,7 +483,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label1.Location = new System.Drawing.Point(12, 178);
+            this.label1.Location = new System.Drawing.Point(12, 117);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 17);
             this.label1.TabIndex = 774;
@@ -483,7 +525,7 @@
             this.DgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DgvData.RowHeadersVisible = false;
             this.DgvData.RowTemplate.Height = 24;
-            this.DgvData.Size = new System.Drawing.Size(1246, 752);
+            this.DgvData.Size = new System.Drawing.Size(1110, 777);
             this.DgvData.TabIndex = 1;
             this.DgvData.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvData_DataBindingComplete);
             // 
@@ -564,57 +606,54 @@
             this.SymbolId.Name = "SymbolId";
             this.SymbolId.Visible = false;
             // 
-            // label12
+            // DgvInstruments
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label12.Location = new System.Drawing.Point(12, 145);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(92, 17);
-            this.label12.TabIndex = 791;
-            this.label12.Text = "Profit Target:";
+            this.DgvInstruments.AllowUserToAddRows = false;
+            this.DgvInstruments.AllowUserToDeleteRows = false;
+            this.DgvInstruments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvInstruments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.insSymbolId,
+            this.chkSymbolSelect,
+            this.insSymbol,
+            this.RESULT});
+            this.DgvInstruments.Location = new System.Drawing.Point(141, 114);
+            this.DgvInstruments.Name = "DgvInstruments";
+            this.DgvInstruments.RowHeadersVisible = false;
+            this.DgvInstruments.RowTemplate.Height = 24;
+            this.DgvInstruments.Size = new System.Drawing.Size(339, 360);
+            this.DgvInstruments.TabIndex = 817;
             // 
-            // txtProfitTarget
+            // insSymbolId
             // 
-            this.txtProfitTarget.BackColor = System.Drawing.Color.White;
-            this.txtProfitTarget.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProfitTarget.Location = new System.Drawing.Point(141, 142);
-            this.txtProfitTarget.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.txtProfitTarget.Name = "txtProfitTarget";
-            this.txtProfitTarget.Size = new System.Drawing.Size(196, 25);
-            this.txtProfitTarget.TabIndex = 792;
-            this.txtProfitTarget.Text = "10";
+            this.insSymbolId.DataPropertyName = "SymbolId";
+            this.insSymbolId.HeaderText = "SymbolId";
+            this.insSymbolId.Name = "insSymbolId";
+            this.insSymbolId.Visible = false;
             // 
-            // textBox1
+            // chkSymbolSelect
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(337, 142);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(56, 25);
-            this.textBox1.TabIndex = 815;
-            this.textBox1.Text = "%";
+            this.chkSymbolSelect.DataPropertyName = "Select";
+            this.chkSymbolSelect.HeaderText = "Select";
+            this.chkSymbolSelect.Name = "chkSymbolSelect";
+            this.chkSymbolSelect.Width = 50;
             // 
-            // textBox2
+            // insSymbol
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(337, 111);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(56, 25);
-            this.textBox2.TabIndex = 816;
-            this.textBox2.Text = "Days";
+            this.insSymbol.DataPropertyName = "SymbolName";
+            this.insSymbol.HeaderText = "Symbol";
+            this.insSymbol.Name = "insSymbol";
+            // 
+            // RESULT
+            // 
+            this.RESULT.DataPropertyName = "RESULT";
+            this.RESULT.HeaderText = "Result";
+            this.RESULT.Name = "RESULT";
             // 
             // frmBackTrack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1749, 752);
+            this.ClientSize = new System.Drawing.Size(1605, 777);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBackTrack";
@@ -631,6 +670,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -666,7 +706,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.CheckedListBox chbxLstInstrument;
         private System.Windows.Forms.DataGridViewTextBoxColumn Symbol;
         private System.Windows.Forms.DataGridViewTextBoxColumn EntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn EntryPrice;
@@ -681,5 +720,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView DgvInstruments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn insSymbolId;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSymbolSelect;
+        private System.Windows.Forms.DataGridViewTextBoxColumn insSymbol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RESULT;
     }
 }

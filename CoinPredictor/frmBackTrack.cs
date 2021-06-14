@@ -12,13 +12,16 @@ namespace CoinPredictor
 {
     public partial class frmBackTrack : Form
     {
+        CheckBox headerCheckBox = new CheckBox();
+
         public frmBackTrack()
         {
             InitializeComponent();
         }
+
         private void Clear()
         {
-            SymbolCheckBoxListFill();
+            SymbolsFill();
             GetCurrentBalance();
             string strTempFromDate = "2021-05-02";
             string strTempToDate = "2021-05-05";
@@ -29,6 +32,7 @@ namespace CoinPredictor
             DgvData.DataSource = CreateTable();
             FillTradePerfoMatrix();
         }
+
         private void SymbolDropdownFill()
         {
             //BackLogDal objDal = new BackLogDal();
@@ -36,25 +40,101 @@ namespace CoinPredictor
             //cmbInstrument.ValueMember = "SymbolId";
             //cmbInstrument.DisplayMember = "Symbol";
         }
-        private void SymbolCheckBoxListFill()
+
+        //private void SymbolCheckBoxListFill()
+        //{
+        //    try
+        //    {
+        //        BackLogDal objDal = new BackLogDal();
+        //        DataTable Dtbl = objDal.SymbolGetAllForDropdown();
+        //        chbxLstInstrument.DataSource = Dtbl;
+        //        chbxLstInstrument.DisplayMember = "Symbol";
+        //        chbxLstInstrument.ValueMember = "SymbolId";
+        //        DataTable dtTop10 = objDal.SymbolsTopTenGetAllForDropDown();
+        //        DgvInstruments.DataSource = dtTop10;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("GetCurrentBalance: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //}
+        private void SymbolsFill()
         {
             try
             {
+                DgvInstruments.DataSource = null;
                 BackLogDal objDal = new BackLogDal();
-                DataTable Dtbl = objDal.SymbolGetAllForDropdown();
-                chbxLstInstrument.DataSource = Dtbl;
-                chbxLstInstrument.DisplayMember = "Symbol";
-                chbxLstInstrument.ValueMember = "SymbolId";
-                for (int i = 0; i < chbxLstInstrument.Items.Count; i++)
-                {
-                    chbxLstInstrument.SetItemChecked(i, true);
-                }
+                DataTable Dtbl = objDal.SymbolsTopTenGetAllForDropDown();
+                DgvInstruments.DataSource = Dtbl;
+                //AddCheckBox();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("GetCurrentBalance: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        //private void AddCheckBox()
+        //{
+        //    try
+        //    {
+        //        //Add a CheckBox Column to the DataGridView Header Cell.
+        //        //Find the Location of Header Cell.
+        //        Point headerCellLocation = this.DgvInstruments.GetCellDisplayRectangle(0, -1, true).Location;
+        //        //Place the Header CheckBox in the Location of the Header Cell.
+        //        headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
+        //        headerCheckBox.BackColor = Color.White;
+        //        headerCheckBox.Size = new Size(18, 18);
+        //        //Assign Click event to the Header CheckBox.
+        //        headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
+        //        DgvInstruments.Controls.Add(headerCheckBox);
+
+        //        if (DgvInstruments.Columns.Contains("checkBoxColumn") == false)
+        //        {
+        //            //Add a CheckBox Column to the DataGridView at the first position.
+        //            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
+        //            checkBoxColumn.HeaderText = "";
+        //            checkBoxColumn.Width = 30;
+        //            checkBoxColumn.Name = "checkBoxColumn";
+        //            DgvInstruments.Columns.Insert(0, checkBoxColumn);
+        //            //Assign Click event to the DataGridView Cell.
+        //            DgvInstruments.CellContentClick += new DataGridViewCellEventHandler(DataGridView_CellClick);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("AddCheckBox: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //}
+
+        //private void HeaderCheckBox_Clicked(object sender, EventArgs e)
+        //{
+        //    DgvInstruments.EndEdit();
+        //    foreach (DataGridViewRow row in DgvInstruments.Rows)
+        //    {
+        //        DataGridViewCheckBoxCell checkBox = (row.Cells["checkBoxColumn"] as DataGridViewCheckBoxCell);
+        //        checkBox.Value = headerCheckBox.Checked;
+        //    }
+        //}
+
+        //private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+        //    {
+        //        bool isChecked = true;
+        //        foreach (DataGridViewRow row in DgvInstruments.Rows)
+        //        {
+        //            if (Convert.ToBoolean(row.Cells["checkBoxColumn"].EditedFormattedValue) == false)
+        //            {
+        //                isChecked = false;
+        //                break;
+        //            }
+        //        }
+        //        headerCheckBox.Checked = isChecked;
+        //    }
+        //}
+
+
         private void GetCurrentBalance()
         {
             try
@@ -68,6 +148,7 @@ namespace CoinPredictor
                 MessageBox.Show("GetCurrentBalance: " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private DataTable GetDataForAutomation(string strSymbolId)
         {
             DataTable dtOutput = new DataTable();
@@ -151,26 +232,43 @@ namespace CoinPredictor
             return dtOutput;
         }
 
-        private string GetSymbols()
+        private string GetSelectedSymbols()
         {
             string strIds = "";
-            foreach (object itemChecked in chbxLstInstrument.CheckedItems)
+            try
             {
-                DataRowView castedItem = itemChecked as DataRowView;
-                int? id = castedItem["SymbolId"].ToString().AsInt();
-                strIds = strIds + id + ",";
+                string message = string.Empty;
+                foreach (DataGridViewRow row in DgvInstruments.Rows)
+                {
+                    bool isSelected = Convert.ToBoolean(row.Cells["chkSymbolSelect"].Value);
+                    if (isSelected)
+                    {
+                        int? id = row.Cells["insSymbolId"].Value.ToString().AsInt();
+                        strIds = strIds + id + ",";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("BtnAutomate_Click : " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             return strIds.TrimEnd(',');
         }
+
         private int GetSelectedSymbolsCount()
         {
             int inCount = 0;
-            foreach (object itemChecked in chbxLstInstrument.CheckedItems)
+            foreach (DataGridViewRow row in DgvInstruments.Rows)
             {
-                inCount++;
+                bool isSelected = Convert.ToBoolean(row.Cells["chkSymbolSelect"].Value);
+                if (isSelected)
+                {
+                    inCount++;
+                }
             }
             return inCount;
         }
+
         private double GetExitPrice(DataTable dtbl, DateTime dtExitDate)
         {
             double decExitPrice = 0;
@@ -190,6 +288,7 @@ namespace CoinPredictor
             }
             return decExitPrice;
         }
+
         private DataTable CreateTable()
         {
             DataTable Dtbl = new DataTable();
@@ -241,7 +340,7 @@ namespace CoinPredictor
             {
                 if (txtStartDate.Text != string.Empty && txtEndDate.Text != string.Empty)
                 {
-                    string strSymbolIds = GetSymbols();
+                    string strSymbolIds = GetSelectedSymbols();
                     if (strSymbolIds != string.Empty)
                     {
                         DataTable dtbl = GetDataForAutomation(strSymbolIds);
@@ -263,6 +362,10 @@ namespace CoinPredictor
                                 MessageBox.Show("Something went wrong details not Saved", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Select atleast one Symbol to Run the Back Track", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -287,6 +390,7 @@ namespace CoinPredictor
                 }
             }
         }
+
         private int SaveAutoTradeMaster()
         {
             int inRetId = 0;
@@ -306,6 +410,7 @@ namespace CoinPredictor
             }
             return inRetId;
         }
+
         private void SaveAutoTradeDetails(int inMasterId)
         {
             try
@@ -335,6 +440,7 @@ namespace CoinPredictor
                 MessageBox.Show("SaveAutoTradeDetails : " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private void FillTradePerfoMatrix()
         {
             try
@@ -357,6 +463,7 @@ namespace CoinPredictor
                 MessageBox.Show("FillTradePerfoMatrix : " + ex.Message, "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try

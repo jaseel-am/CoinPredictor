@@ -70,7 +70,6 @@
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.mastersToolStripMenuItem.Text = "Masters";
-            this.mastersToolStripMenuItem.Visible = false;
             // 
             // mnuCoinPredict
             // 
@@ -92,14 +91,14 @@
             // autoTradeToolStripMenuItem
             // 
             this.autoTradeToolStripMenuItem.Name = "autoTradeToolStripMenuItem";
-            this.autoTradeToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.autoTradeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.autoTradeToolStripMenuItem.Text = "Auto Trade";
             this.autoTradeToolStripMenuItem.Click += new System.EventHandler(this.autoTradeToolStripMenuItem_Click);
             // 
             // mnuBuyCoin
             // 
             this.mnuBuyCoin.Name = "mnuBuyCoin";
-            this.mnuBuyCoin.Size = new System.Drawing.Size(176, 26);
+            this.mnuBuyCoin.Size = new System.Drawing.Size(216, 26);
             this.mnuBuyCoin.Text = "Purchase Coin";
             this.mnuBuyCoin.Visible = false;
             this.mnuBuyCoin.Click += new System.EventHandler(this.mnuBuyCoin_Click);
@@ -107,7 +106,7 @@
             // holdingsToolStripMenuItem
             // 
             this.holdingsToolStripMenuItem.Name = "holdingsToolStripMenuItem";
-            this.holdingsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.holdingsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.holdingsToolStripMenuItem.Text = "Holdings";
             this.holdingsToolStripMenuItem.Visible = false;
             this.holdingsToolStripMenuItem.Click += new System.EventHandler(this.holdingsToolStripMenuItem_Click);

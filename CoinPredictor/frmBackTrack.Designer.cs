@@ -36,8 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackTrack));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtGainPercent = new System.Windows.Forms.TextBox();
@@ -103,8 +101,6 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(233)))));
             this.splitContainer1.Panel1.Controls.Add(this.DgvInstruments);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.btnClear);
@@ -126,33 +122,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.DgvData);
-            this.splitContainer1.Size = new System.Drawing.Size(1605, 777);
-            this.splitContainer1.SplitterDistance = 491;
+            this.splitContainer1.Size = new System.Drawing.Size(1764, 747);
+            this.splitContainer1.SplitterDistance = 626;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(198, 77);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(47, 25);
-            this.textBox2.TabIndex = 816;
-            this.textBox2.Text = "Days";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBox1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(431, 77);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(32, 25);
-            this.textBox1.TabIndex = 815;
-            this.textBox1.Text = "%";
             // 
             // panel2
             // 
@@ -168,9 +140,9 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtTotalTrade);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Location = new System.Drawing.Point(3, 566);
+            this.panel2.Location = new System.Drawing.Point(3, 554);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(407, 190);
+            this.panel2.Size = new System.Drawing.Size(620, 190);
             this.panel2.TabIndex = 813;
             // 
             // btnRefresh
@@ -195,7 +167,7 @@
             this.txtGainPercent.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtGainPercent.Name = "txtGainPercent";
             this.txtGainPercent.ReadOnly = true;
-            this.txtGainPercent.Size = new System.Drawing.Size(156, 25);
+            this.txtGainPercent.Size = new System.Drawing.Size(339, 25);
             this.txtGainPercent.TabIndex = 806;
             this.txtGainPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -229,7 +201,7 @@
             this.txtFinalAccountBalance.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtFinalAccountBalance.Name = "txtFinalAccountBalance";
             this.txtFinalAccountBalance.ReadOnly = true;
-            this.txtFinalAccountBalance.Size = new System.Drawing.Size(156, 25);
+            this.txtFinalAccountBalance.Size = new System.Drawing.Size(339, 25);
             this.txtFinalAccountBalance.TabIndex = 805;
             this.txtFinalAccountBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -252,7 +224,7 @@
             this.txtProfitFactor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtProfitFactor.Name = "txtProfitFactor";
             this.txtProfitFactor.ReadOnly = true;
-            this.txtProfitFactor.Size = new System.Drawing.Size(156, 25);
+            this.txtProfitFactor.Size = new System.Drawing.Size(339, 25);
             this.txtProfitFactor.TabIndex = 809;
             this.txtProfitFactor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -264,7 +236,7 @@
             this.txtProfitableTrade.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtProfitableTrade.Name = "txtProfitableTrade";
             this.txtProfitableTrade.ReadOnly = true;
-            this.txtProfitableTrade.Size = new System.Drawing.Size(156, 25);
+            this.txtProfitableTrade.Size = new System.Drawing.Size(339, 25);
             this.txtProfitableTrade.TabIndex = 808;
             this.txtProfitableTrade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -287,7 +259,7 @@
             this.txtTotalTrade.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtTotalTrade.Name = "txtTotalTrade";
             this.txtTotalTrade.ReadOnly = true;
-            this.txtTotalTrade.Size = new System.Drawing.Size(156, 25);
+            this.txtTotalTrade.Size = new System.Drawing.Size(339, 25);
             this.txtTotalTrade.TabIndex = 807;
             this.txtTotalTrade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -306,9 +278,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(121)))), ((int)(((byte)(191)))));
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(2, 520);
+            this.panel1.Location = new System.Drawing.Point(2, 508);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(408, 47);
+            this.panel1.Size = new System.Drawing.Size(621, 47);
             this.panel1.TabIndex = 812;
             // 
             // label11
@@ -354,10 +326,10 @@
             // 
             this.txtProfitTarget.BackColor = System.Drawing.Color.White;
             this.txtProfitTarget.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProfitTarget.Location = new System.Drawing.Point(359, 77);
+            this.txtProfitTarget.Location = new System.Drawing.Point(401, 77);
             this.txtProfitTarget.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtProfitTarget.Name = "txtProfitTarget";
-            this.txtProfitTarget.Size = new System.Drawing.Size(73, 25);
+            this.txtProfitTarget.Size = new System.Drawing.Size(126, 25);
             this.txtProfitTarget.TabIndex = 792;
             this.txtProfitTarget.Text = "10";
             // 
@@ -366,11 +338,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label12.Location = new System.Drawing.Point(257, 77);
+            this.label12.Location = new System.Drawing.Point(278, 79);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(92, 17);
+            this.label12.Size = new System.Drawing.Size(117, 17);
             this.label12.TabIndex = 791;
-            this.label12.Text = "Profit Target:";
+            this.label12.Text = "Profit Target(%):";
             // 
             // txtDuration
             // 
@@ -379,7 +351,7 @@
             this.txtDuration.Location = new System.Drawing.Point(141, 77);
             this.txtDuration.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(57, 25);
+            this.txtDuration.Size = new System.Drawing.Size(126, 25);
             this.txtDuration.TabIndex = 792;
             this.txtDuration.Text = "3";
             // 
@@ -390,14 +362,14 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
             this.label4.Location = new System.Drawing.Point(12, 77);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
+            this.label4.Size = new System.Drawing.Size(111, 17);
             this.label4.TabIndex = 791;
-            this.label4.Text = "Duration:";
+            this.label4.Text = "Duration(Days):";
             // 
             // dtpEndDate
             // 
             this.dtpEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEndDate.Location = new System.Drawing.Point(437, 45);
+            this.dtpEndDate.Location = new System.Drawing.Point(502, 46);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(25, 25);
@@ -407,7 +379,7 @@
             // txtEndDate
             // 
             this.txtEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndDate.Location = new System.Drawing.Point(336, 45);
+            this.txtEndDate.Location = new System.Drawing.Point(401, 46);
             this.txtEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtEndDate.Name = "txtEndDate";
             this.txtEndDate.Size = new System.Drawing.Size(104, 25);
@@ -439,7 +411,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label6.Location = new System.Drawing.Point(268, 46);
+            this.label6.Location = new System.Drawing.Point(278, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 17);
             this.label6.TabIndex = 786;
@@ -474,7 +446,7 @@
             this.txtOpeningBalance.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtOpeningBalance.Name = "txtOpeningBalance";
             this.txtOpeningBalance.ReadOnly = true;
-            this.txtOpeningBalance.Size = new System.Drawing.Size(321, 25);
+            this.txtOpeningBalance.Size = new System.Drawing.Size(386, 25);
             this.txtOpeningBalance.TabIndex = 784;
             this.txtOpeningBalance.Text = "1000";
             // 
@@ -525,7 +497,7 @@
             this.DgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DgvData.RowHeadersVisible = false;
             this.DgvData.RowTemplate.Height = 24;
-            this.DgvData.Size = new System.Drawing.Size(1110, 777);
+            this.DgvData.Size = new System.Drawing.Size(1134, 747);
             this.DgvData.TabIndex = 1;
             this.DgvData.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvData_DataBindingComplete);
             // 
@@ -620,7 +592,7 @@
             this.DgvInstruments.Name = "DgvInstruments";
             this.DgvInstruments.RowHeadersVisible = false;
             this.DgvInstruments.RowTemplate.Height = 24;
-            this.DgvInstruments.Size = new System.Drawing.Size(339, 360);
+            this.DgvInstruments.Size = new System.Drawing.Size(386, 360);
             this.DgvInstruments.TabIndex = 817;
             // 
             // insSymbolId
@@ -653,7 +625,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1605, 777);
+            this.ClientSize = new System.Drawing.Size(1764, 747);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBackTrack";
@@ -718,8 +690,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SymbolId;
         private System.Windows.Forms.TextBox txtProfitTarget;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView DgvInstruments;
         private System.Windows.Forms.DataGridViewTextBoxColumn insSymbolId;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkSymbolSelect;

@@ -62,7 +62,7 @@ namespace CoinPredictor
         {
             try
             {
-                DgvInstruments.DataSource = null;
+               // DgvInstruments.DataSource = null;
                 BackLogDal objDal = new BackLogDal();
                 DataTable Dtbl = objDal.SymbolsTopTenGetAllForDropDown();
                 DgvInstruments.DataSource = Dtbl;

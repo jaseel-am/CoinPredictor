@@ -21,25 +21,26 @@ namespace CoinPredictor
 
         private void Clear()
         {
-            SymbolsFill();
+
             GetCurrentBalance();
             string strTempFromDate = "2021-05-02";
             string strTempToDate = "2021-05-05";
             txtStartDate.Text = strTempFromDate.AsDateTime().ToString("dd-MMM-yyyy");
             txtEndDate.Text = strTempToDate.AsDateTime().ToString("dd-MMM-yyyy");
-            SymbolDropdownFill();
+            SymbolsFill();
+            //  SymbolDropdownFill();
             txtStartDate.Focus();
             DgvData.DataSource = CreateTable();
             FillTradePerfoMatrix();
         }
 
-        private void SymbolDropdownFill()
-        {
-            //BackLogDal objDal = new BackLogDal();
-            //cmbInstrument.DataSource = objDal.SymbolGetAllForDropdown();
-            //cmbInstrument.ValueMember = "SymbolId";
-            //cmbInstrument.DisplayMember = "Symbol";
-        }
+        //private void SymbolDropdownFill()
+        //{
+        //    //BackLogDal objDal = new BackLogDal();
+        //    //cmbInstrument.DataSource = objDal.SymbolGetAllForDropdown();
+        //    //cmbInstrument.ValueMember = "SymbolId";
+        //    //cmbInstrument.DisplayMember = "Symbol";
+        //}
 
         //private void SymbolCheckBoxListFill()
         //{
@@ -62,11 +63,15 @@ namespace CoinPredictor
         {
             try
             {
-               // DgvInstruments.DataSource = null;
                 BackLogDal objDal = new BackLogDal();
-                DataTable Dtbl = objDal.SymbolsTopTenGetAllForDropDown();
+                DataTable Dtbl = objDal.SymbolsTopTenGetAllForDropDown(txtStartDate.Text.AsDateTime());
+                DataView view = new DataView(Dtbl);
+                view.RowFilter = "RESULT = 0.00";
+                foreach (DataRowView row in view)
+                {
+                    row.Delete();
+                }
                 DgvInstruments.DataSource = Dtbl;
-                //AddCheckBox();
             }
             catch (Exception ex)
             {
@@ -240,8 +245,7 @@ namespace CoinPredictor
                 string message = string.Empty;
                 foreach (DataGridViewRow row in DgvInstruments.Rows)
                 {
-                    bool isSelected = Convert.ToBoolean(row.Cells["chkSymbolSelect"].Value);
-                    if (isSelected)
+                    if (Convert.ToBoolean(row.Cells[chkSymbolSelect.Name].Value) == true)
                     {
                         int? id = row.Cells["insSymbolId"].Value.ToString().AsInt();
                         strIds = strIds + id + ",";
@@ -311,9 +315,10 @@ namespace CoinPredictor
             {
                 DateTime date = this.dtpStartDate.Value;
                 this.txtStartDate.Text = date.ToString("dd-MMM-yyyy");
-                this.txtEndDate.Text = date.AddDays(5).ToString("dd-MMM-yyyy");
+                this.txtEndDate.Text = date.AddDays(30).ToString("dd-MMM-yyyy");
                 this.dtpStartDate.Value = txtStartDate.Text.AsDateTime();
                 this.dtpEndDate.Value = txtEndDate.Text.AsDateTime();
+                SymbolsFill();
             }
             catch (Exception ex)
             {
@@ -361,6 +366,10 @@ namespace CoinPredictor
                             {
                                 MessageBox.Show("Something went wrong details not Saved", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Data to Automate", "CoinPredictor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else

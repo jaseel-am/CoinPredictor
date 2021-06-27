@@ -218,6 +218,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Docs\CoinPro Sprint 2 Feedback 1.docx" />
+    <None Include="Docs\Design Document for CoinPro.pptm" />
     <None Include="Docs\Jaseel Sprint Plan.docx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -234,7 +236,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Docs\image.png" />
+    <Content Include="Docs\ProfitTrade_Calc.png" />
+    <Content Include="Docs\WhatsApp Image 2021-05-19 at 8.47.30 PM.jpeg" />
     <Content Include="Icon.ico" />
+    <Content Include="Scripts\27-June-2021.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

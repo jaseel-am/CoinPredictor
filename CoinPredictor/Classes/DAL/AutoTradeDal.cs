@@ -7,6 +7,30 @@ namespace CoinPredictor
 {
     public class AutoTradeDal : DBConnection
     {
+        public int SymbolsAdd(string strSymbol, string strDesc)
+        {
+            object result = new object();
+            int inRetId = 0;
+            try
+            {
+                using (SqlConnection objConn = new SqlConnection(ConnectionString))
+                {
+                    objConn.Open();
+                    SqlCommand objCmd = new SqlCommand("SymbolsAdd", objConn);
+                    objCmd.CommandType = CommandType.StoredProcedure;
+                    objCmd.Parameters.AddWithValue("@SymbolName", strSymbol);
+                    objCmd.Parameters.AddWithValue("@Description", strDesc);
+                    result = objCmd.ExecuteNonQuery();
+                    objConn.Close();
+                    inRetId = result.ToString().AsInt();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogData.LoggError(ex.Message, "SymbolsAdd", ex.ToString());
+            }
+            return inRetId;
+        }
         public double GetAutoTradeCurrentBalance()
         {
             object result = new object();

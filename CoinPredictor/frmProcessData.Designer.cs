@@ -75,7 +75,7 @@
             this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBrowse.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.btnBrowse.ForeColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(695, 3);
+            this.btnBrowse.Location = new System.Drawing.Point(694, 3);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(93, 32);
             this.btnBrowse.TabIndex = 11;
@@ -90,7 +90,7 @@
             this.btnLoadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadData.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.btnLoadData.ForeColor = System.Drawing.Color.White;
-            this.btnLoadData.Location = new System.Drawing.Point(1282, 3);
+            this.btnLoadData.Location = new System.Drawing.Point(1281, 3);
             this.btnLoadData.Name = "btnLoadData";
             this.btnLoadData.Size = new System.Drawing.Size(113, 32);
             this.btnLoadData.TabIndex = 10;
@@ -105,7 +105,7 @@
             this.txtFilePath.Location = new System.Drawing.Point(3, 3);
             this.txtFilePath.Multiline = true;
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(686, 32);
+            this.txtFilePath.Size = new System.Drawing.Size(685, 32);
             this.txtFilePath.TabIndex = 9;
             // 
             // DgvData
@@ -273,7 +273,7 @@
             this.CmbSheets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbSheets.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbSheets.FormattingEnabled = true;
-            this.CmbSheets.Location = new System.Drawing.Point(1036, 3);
+            this.CmbSheets.Location = new System.Drawing.Point(1035, 3);
             this.CmbSheets.Name = "CmbSheets";
             this.CmbSheets.Size = new System.Drawing.Size(240, 29);
             this.CmbSheets.TabIndex = 12;
@@ -285,7 +285,7 @@
             this.BtnListGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnListGenerate.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.BtnListGenerate.ForeColor = System.Drawing.Color.White;
-            this.BtnListGenerate.Location = new System.Drawing.Point(902, 3);
+            this.BtnListGenerate.Location = new System.Drawing.Point(901, 3);
             this.BtnListGenerate.Name = "BtnListGenerate";
             this.BtnListGenerate.Size = new System.Drawing.Size(128, 32);
             this.BtnListGenerate.TabIndex = 11;
@@ -300,7 +300,7 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(1401, 3);
+            this.btnClear.Location = new System.Drawing.Point(1400, 3);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(103, 32);
             this.btnClear.TabIndex = 10;
@@ -315,7 +315,7 @@
             this.btnExporttoExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExporttoExcel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.btnExporttoExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExporttoExcel.Location = new System.Drawing.Point(1510, 3);
+            this.btnExporttoExcel.Location = new System.Drawing.Point(1509, 3);
             this.btnExporttoExcel.Name = "btnExporttoExcel";
             this.btnExporttoExcel.Size = new System.Drawing.Size(127, 32);
             this.btnExporttoExcel.TabIndex = 10;
@@ -327,7 +327,7 @@
             // 
             this.chkRemember.AutoSize = true;
             this.chkRemember.ForeColor = System.Drawing.Color.White;
-            this.chkRemember.Location = new System.Drawing.Point(794, 3);
+            this.chkRemember.Location = new System.Drawing.Point(793, 3);
             this.chkRemember.Name = "chkRemember";
             this.chkRemember.Size = new System.Drawing.Size(102, 21);
             this.chkRemember.TabIndex = 13;
@@ -364,7 +364,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tableLayoutPanel1.Controls.Add(this.btnLoadtoDb, 8, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtFilePath, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnBrowse, 1, 0);
@@ -389,9 +389,9 @@
             this.btnLoadtoDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadtoDb.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold);
             this.btnLoadtoDb.ForeColor = System.Drawing.Color.White;
-            this.btnLoadtoDb.Location = new System.Drawing.Point(1643, 3);
+            this.btnLoadtoDb.Location = new System.Drawing.Point(1642, 3);
             this.btnLoadtoDb.Name = "btnLoadtoDb";
-            this.btnLoadtoDb.Size = new System.Drawing.Size(123, 32);
+            this.btnLoadtoDb.Size = new System.Drawing.Size(124, 32);
             this.btnLoadtoDb.TabIndex = 14;
             this.btnLoadtoDb.Text = "Save to DB";
             this.btnLoadtoDb.UseVisualStyleBackColor = false;

@@ -36,6 +36,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackTrack));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.DgvInstruments = new System.Windows.Forms.DataGridView();
+            this.insSymbolId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkSymbolSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.insSymbol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RESULT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtGainPercent = new System.Windows.Forms.TextBox();
@@ -76,19 +81,14 @@
             this.AccountBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExitOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SymbolId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DgvInstruments = new System.Windows.Forms.DataGridView();
-            this.insSymbolId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkSymbolSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.insSymbol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RESULT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -122,9 +122,52 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.DgvData);
-            this.splitContainer1.Size = new System.Drawing.Size(1764, 747);
-            this.splitContainer1.SplitterDistance = 626;
+            this.splitContainer1.Size = new System.Drawing.Size(1780, 747);
+            this.splitContainer1.SplitterDistance = 664;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // DgvInstruments
+            // 
+            this.DgvInstruments.AllowUserToAddRows = false;
+            this.DgvInstruments.AllowUserToDeleteRows = false;
+            this.DgvInstruments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvInstruments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.insSymbolId,
+            this.chkSymbolSelect,
+            this.insSymbol,
+            this.RESULT});
+            this.DgvInstruments.Location = new System.Drawing.Point(141, 114);
+            this.DgvInstruments.Name = "DgvInstruments";
+            this.DgvInstruments.RowHeadersVisible = false;
+            this.DgvInstruments.RowTemplate.Height = 24;
+            this.DgvInstruments.Size = new System.Drawing.Size(455, 360);
+            this.DgvInstruments.TabIndex = 817;
+            // 
+            // insSymbolId
+            // 
+            this.insSymbolId.DataPropertyName = "SymbolId";
+            this.insSymbolId.HeaderText = "SymbolId";
+            this.insSymbolId.Name = "insSymbolId";
+            this.insSymbolId.Visible = false;
+            // 
+            // chkSymbolSelect
+            // 
+            this.chkSymbolSelect.DataPropertyName = "Select";
+            this.chkSymbolSelect.HeaderText = "Select";
+            this.chkSymbolSelect.Name = "chkSymbolSelect";
+            this.chkSymbolSelect.Width = 50;
+            // 
+            // insSymbol
+            // 
+            this.insSymbol.DataPropertyName = "SymbolName";
+            this.insSymbol.HeaderText = "Symbol";
+            this.insSymbol.Name = "insSymbol";
+            // 
+            // RESULT
+            // 
+            this.RESULT.DataPropertyName = "RESULT";
+            this.RESULT.HeaderText = "Result";
+            this.RESULT.Name = "RESULT";
             // 
             // panel2
             // 
@@ -280,7 +323,7 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(2, 508);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(621, 47);
+            this.panel1.Size = new System.Drawing.Size(594, 47);
             this.panel1.TabIndex = 812;
             // 
             // label11
@@ -326,10 +369,10 @@
             // 
             this.txtProfitTarget.BackColor = System.Drawing.Color.White;
             this.txtProfitTarget.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProfitTarget.Location = new System.Drawing.Point(401, 77);
+            this.txtProfitTarget.Location = new System.Drawing.Point(442, 77);
             this.txtProfitTarget.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtProfitTarget.Name = "txtProfitTarget";
-            this.txtProfitTarget.Size = new System.Drawing.Size(126, 25);
+            this.txtProfitTarget.Size = new System.Drawing.Size(152, 25);
             this.txtProfitTarget.TabIndex = 792;
             this.txtProfitTarget.Text = "10";
             // 
@@ -338,7 +381,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label12.Location = new System.Drawing.Point(278, 79);
+            this.label12.Location = new System.Drawing.Point(309, 79);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(117, 17);
             this.label12.TabIndex = 791;
@@ -351,7 +394,7 @@
             this.txtDuration.Location = new System.Drawing.Point(141, 77);
             this.txtDuration.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(126, 25);
+            this.txtDuration.Size = new System.Drawing.Size(139, 25);
             this.txtDuration.TabIndex = 792;
             this.txtDuration.Text = "3";
             // 
@@ -369,7 +412,7 @@
             // dtpEndDate
             // 
             this.dtpEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEndDate.Location = new System.Drawing.Point(502, 46);
+            this.dtpEndDate.Location = new System.Drawing.Point(569, 46);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(25, 25);
@@ -379,16 +422,16 @@
             // txtEndDate
             // 
             this.txtEndDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndDate.Location = new System.Drawing.Point(401, 46);
+            this.txtEndDate.Location = new System.Drawing.Point(442, 46);
             this.txtEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(104, 25);
+            this.txtEndDate.Size = new System.Drawing.Size(130, 25);
             this.txtEndDate.TabIndex = 789;
             // 
             // dtpStartDate
             // 
             this.dtpStartDate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStartDate.Location = new System.Drawing.Point(242, 42);
+            this.dtpStartDate.Location = new System.Drawing.Point(258, 42);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(25, 25);
@@ -411,7 +454,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(4)))), ((int)(((byte)(122)))));
-            this.label6.Location = new System.Drawing.Point(278, 46);
+            this.label6.Location = new System.Drawing.Point(309, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 17);
             this.label6.TabIndex = 786;
@@ -423,7 +466,7 @@
             this.txtStartDate.Location = new System.Drawing.Point(141, 42);
             this.txtStartDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 0);
             this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(104, 25);
+            this.txtStartDate.Size = new System.Drawing.Size(117, 25);
             this.txtStartDate.TabIndex = 787;
             // 
             // label3
@@ -497,7 +540,7 @@
             this.DgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DgvData.RowHeadersVisible = false;
             this.DgvData.RowTemplate.Height = 24;
-            this.DgvData.Size = new System.Drawing.Size(1134, 747);
+            this.DgvData.Size = new System.Drawing.Size(1112, 747);
             this.DgvData.TabIndex = 1;
             this.DgvData.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvData_DataBindingComplete);
             // 
@@ -578,54 +621,11 @@
             this.SymbolId.Name = "SymbolId";
             this.SymbolId.Visible = false;
             // 
-            // DgvInstruments
-            // 
-            this.DgvInstruments.AllowUserToAddRows = false;
-            this.DgvInstruments.AllowUserToDeleteRows = false;
-            this.DgvInstruments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvInstruments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.insSymbolId,
-            this.chkSymbolSelect,
-            this.insSymbol,
-            this.RESULT});
-            this.DgvInstruments.Location = new System.Drawing.Point(141, 114);
-            this.DgvInstruments.Name = "DgvInstruments";
-            this.DgvInstruments.RowHeadersVisible = false;
-            this.DgvInstruments.RowTemplate.Height = 24;
-            this.DgvInstruments.Size = new System.Drawing.Size(386, 360);
-            this.DgvInstruments.TabIndex = 817;
-            // 
-            // insSymbolId
-            // 
-            this.insSymbolId.DataPropertyName = "SymbolId";
-            this.insSymbolId.HeaderText = "SymbolId";
-            this.insSymbolId.Name = "insSymbolId";
-            this.insSymbolId.Visible = false;
-            // 
-            // chkSymbolSelect
-            // 
-            this.chkSymbolSelect.DataPropertyName = "Select";
-            this.chkSymbolSelect.HeaderText = "Select";
-            this.chkSymbolSelect.Name = "chkSymbolSelect";
-            this.chkSymbolSelect.Width = 50;
-            // 
-            // insSymbol
-            // 
-            this.insSymbol.DataPropertyName = "SymbolName";
-            this.insSymbol.HeaderText = "Symbol";
-            this.insSymbol.Name = "insSymbol";
-            // 
-            // RESULT
-            // 
-            this.RESULT.DataPropertyName = "RESULT";
-            this.RESULT.HeaderText = "Result";
-            this.RESULT.Name = "RESULT";
-            // 
             // frmBackTrack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1764, 747);
+            this.ClientSize = new System.Drawing.Size(1780, 747);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBackTrack";
@@ -637,12 +637,12 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvInstruments)).EndInit();
             this.ResumeLayout(false);
 
         }

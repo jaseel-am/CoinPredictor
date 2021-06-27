@@ -116,7 +116,7 @@ namespace CoinPredictor
             }
             return dtbl;
         }
-        public DataTable SymbolsTopTenGetAllForDropDown()
+        public DataTable SymbolsTopTenGetAllForDropDown(DateTime dtFrom)
         {
             DataTable dtbl = new DataTable();
             try
@@ -129,6 +129,7 @@ namespace CoinPredictor
                     }
                     SqlDataAdapter sdaadapter = new SqlDataAdapter("SymbolsTopTenGetAll", objConn);
                     sdaadapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    sdaadapter.SelectCommand.Parameters.AddWithValue("@fromDate", dtFrom);
                     sdaadapter.Fill(dtbl);
                 }
             }

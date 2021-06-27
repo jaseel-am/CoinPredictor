@@ -24,6 +24,15 @@ namespace CoinPredictor
             string strPath = txtFilePath.Text.Trim();
             Lists = objClass.GetAllSheetNames(strPath);
             CmbSheets.DataSource = Lists;
+
+            ///// Load all data to Symbol Table first time------------
+            //AutoTradeDal objDal = new AutoTradeDal();
+            //for (int i = 0; i < Lists.Count; i++)
+            //{
+            //    string Symbol = Lists[i].ToString();
+            //    string desc = "USDT";
+            //    objDal.SymbolsAdd(Symbol, desc);
+            //}
         }
         private int FillCoinData()
         {
@@ -477,7 +486,7 @@ namespace CoinPredictor
                     foreach (DataRow row in dt.Rows)
                     {
                         BackLogModel objModel = new BackLogModel();
-                        objModel.Symbol= row["Symbol"].ToString();
+                        objModel.Symbol = row["Symbol"].ToString();
                         objModel.Description = row["Description"].ToString();
                         objModel.LogDate = row["Date"].ToString().AsDateTime();
                         objModel.OpenVal = row["Open"].ToString().AsDouble();
